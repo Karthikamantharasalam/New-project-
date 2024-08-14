@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Builder</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        .container { display: flex; height: 100vh; }
+        .sidebar { width: 200px; background: #333; color: #fff; padding: 20px; }
+        .workspace { flex: 1; background: #fff; padding: 20px; position: relative; }
+        .draggable { background: #007bff; color: #fff; padding: 10px; margin-bottom: 10px; cursor: grab; border-radius: 5px; }
+        .workspace .task, .workspace .decision, .workspace .data-entry { position: absolute; padding: 10px; border-radius: 5px; background: #007bff; color: #fff; cursor: move; }
+        .task { background: #4caf50; }
+        .decision { background: #ffeb3b; color: #000; }
+        .data-entry { background: #f44336; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h3>Components</h3>
+            <div class="draggable task" draggable="true">Task</div>
+            <div class="draggable decision" draggable="true">Decision Point</div>
+            <div class="draggable data-entry" draggable="true">Data Entry</div>
+        </div>
+        <div class="workspace" id="workspace">
+            <h3>Workflow Area</h3>
+        </div>
+    </div>
+
+    <script>
+        const draggables = document.querySelectorAll('.draggable');
+        const workspace = document.getElementById('workspace');
+
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', dragStart);
+        });
+
+        workspace.addEventListener('dragover', dragOver);
+        workspace.addEventListener('drop', drop);
+
+        function dragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.className.split(' ')[1]);
+        }
+
+        function dragOver(e) {
+            e.preventDefault();
+        }
+
+        function drop(e) {
+            e.preventDefault();
+            const type = e.dataTransfer.getData('text/plain');
+            const element = document.createElement('div');
+            element.className = `${type}`;
+            element.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+            element.style.left = `${e.clientX - workspace.offsetLeft - 50}px`;
+            element.style.top = `${e.clientY - workspace.offsetTop - 25}px`;
+            element.draggable = true;
+            element.addEventListener('dragstart', dragStart);
+            workspace.appendChild(element);
+        }
+    </script>
+</body>
+</html>

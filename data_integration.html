@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Integration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="data-integration-container">
+        <h2>Data Integration</h2>
+        <form action="/integrate-data" method="post">
+            <label for="data-source">Select Data Source:</label>
+            <select id="data-source" name="data_source" required>
+                <option value="simulated">Simulated Data</option>
+                <option value="api">API Integration</option>
+            </select>
+            <label for="data-fields">Data Fields:</label>
+            <textarea id="data-fields" name="data_fields" rows="10" cols="50" placeholder="Enter data fields here..."></textarea>
+            <button type="submit">Integrate Data</button>
+        </form>
+    </div>
+</body>
+</html>

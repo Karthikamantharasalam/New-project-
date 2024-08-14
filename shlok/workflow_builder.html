@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workflow Builder - SafeFlow</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; display: flex; height: 100vh; }
+        .sidebar { width: 200px; background: #007bff; color: #fff; padding: 20px; box-sizing: border-box; }
+        .main { flex: 1; padding: 20px; }
+        .draggable { background: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px; cursor: move; }
+        .workspace { border: 2px dashed #007bff; min-height: 400px; padding: 20px; background: #fff; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Components</h2>
+        <div class="draggable" draggable="true">Inspection Task</div>
+        <div class="draggable" draggable="true">Decision Point</div>
+        <div class="draggable" draggable="true">Data Entry</div>
+    </div>
+    <div class="main">
+        <h2>Workflow Builder</h2>
+        <div class="workspace" id="workspace">
+            <p>Drag components here to build your workflow.</p>
+        </div>
+    </div>
+    <script>
+        // Basic drag-and-drop functionality
+        const draggables = document.querySelectorAll('.draggable');
+        const workspace = document.getElementById('workspace');
+
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', () => {
+                draggable.classList.add('dragging');
+            });
+            draggable.addEventListener('dragend', () => {
+                draggable.classList.remove('dragging');
+            });
+        });
+
+        workspace.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            const dragging = document.querySelector('.dragging');
+            workspace.appendChild(dragging);
+        });
+    </script>
+</body>
+</html>

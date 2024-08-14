@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execution Dashboard - SafeFlow</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; }
+        .navbar { background: #007bff; color: #fff; padding: 15px; text-align: center; }
+        .container { padding: 20px; }
+        .card { background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); padding: 20px; margin-bottom: 20px; }
+        .status { padding: 10px; border-radius: 4px; margin-bottom: 10px; }
+        .status.in-progress { background-color: #ffeb3b; color: #000; }
+        .status.completed { background-color: #4caf50; color: #fff; }
+        .status.halted { background-color: #f44336; color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Execution Dashboard</h1>
+    </div>
+    <div class="container">
+        <div class="card">
+            <h2>Current Executions</h2>
+            <div class="status in-progress">
+                <h3>Execution ID: EX12345</h3>
+                <p>Workflow: Safety Inspection A</p>
+                <p>Status: In Progress</p>
+                <button class="btn">View Details</button>
+            </div>
+            <div class="status completed">
+                <h3>Execution ID: EX12346</h3>
+                <p>Workflow: Safety Inspection B</p>
+                <p>Status: Completed</p>
+                <button class="btn">View Details</button>
+            </div>
+            <div class="status halted">
+                <h3>Execution ID: EX12347</h3>
+                <p>Workflow: Safety Inspection C</p>
+                <p>Status: Halted</p>
+                <button class="btn">View Details</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
